@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Exclaimer.Service.Customer.Application.Commands
 {
-    public class CreateCustomer: IRequest<Domain.Entities.Customer>
+    public class CreateCustomerCommand: IRequest<Domain.Entities.Customer>
     {
         public string? FirstName { get; set; }
 

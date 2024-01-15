@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 
 namespace Exclaimer.Service.Customer.Application.Commands
 {
-    public class CreateCustomerHandler : IRequestHandler<CreateCustomer, Domain.Entities.Customer>
+    public class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerCommand, Domain.Entities.Customer>
     {
         private readonly ICustomerRepository _customerRepository;
 
-        public CreateCustomerHandler(ICustomerRepository customerRepository)
+        public CreateCustomerCommandHandler(ICustomerRepository customerRepository)
         {
             _customerRepository = customerRepository;
         }
 
-        public async Task<Domain.Entities.Customer> Handle(CreateCustomer request, CancellationToken cancellationToken)
+        public async Task<Domain.Entities.Customer> Handle(CreateCustomerCommand request, CancellationToken cancellationToken)
         {
             var customer = new Domain.Entities.Customer
             {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Exclaimer.Service.Customer.Application.Queries
 {
-    public class GetCustomerById : IRequest<Domain.Entities.Customer>
+    public class GetCustomerByIdQuery : IRequest<Domain.Entities.Customer>
     {
         public int Id { get; set; }
     }
