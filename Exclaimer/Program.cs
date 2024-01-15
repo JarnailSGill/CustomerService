@@ -1,8 +1,11 @@
 using Exclaimer.Service.Customer.Application;
 using Exclaimer.Service.Customer.Application.Abstract;
+using Exclaimer.Service.Customer.Application.Commands;
 using Exclaimer.Service.Customer.Infrastructure;
 using Exclaimer.Service.Customer.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,7 +20,9 @@ builder.Services.AddInfrastructure();
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 
 var cs = builder.Configuration.GetConnectionString("Default");
-builder.Services.AddDbContext<CustomerDbContext>(opt => opt.UseSqlServer(cs)); 
+builder.Services.AddDbContext<CustomerDbContext>(opt => opt.UseSqlServer(cs));
+
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
 var app = builder.Build();
 

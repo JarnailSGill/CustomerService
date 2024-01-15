@@ -16,7 +16,7 @@ namespace Exclaimer.Service.Customer.Application.Abstract
 
         //Task<Domain.Entities.Customer> UpdateCustomer(int customerId, string name, string email);
 
-        //Task<Domain.Entities.Customer> GetCustomerById(int customerId);
+        Task<Domain.Entities.Customer> GetCustomerById(int customerId);
 
     }
 }

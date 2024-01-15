@@ -42,15 +42,15 @@ namespace Exclaimer.Service.Customer.Infrastructure.Repositories
             return await _context.Customer.ToListAsync();
         }
 
-        //public async Task<Domain.Entities.Customer> GetCustomerById(int customerId)
-        //{
-        //    return await _context.Customer.SingleOrDefault(p => p.Id.Equals(customerId));
-        //}
+        public async Task<Domain.Entities.Customer> GetCustomerById(int customerId)
+        {
+            return await _context.Customer.SingleOrDefaultAsync(p => p.Id.Equals(customerId));
+        }
 
         //public async Task<Domain.Entities.Customer> UpdateCustomer(int customerId, string name, string email)
         //{
-        //    var customer = await _context.Customer.SingleOrDefault(p => p.Id == customerId);
-        //    customer.Name = name;
+        //    var customer = await _context.Customer.SingleOrDefaultAsync(p => p.Id == customerId);
+        //    customer.FirstName = name;
         //    customer.Email = email;
 
         //    await _context.SaveChangesAsync();
