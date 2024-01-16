@@ -24,10 +24,11 @@ namespace Exclaimer.Service.Customer.Web.Controllers
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.OK, Type = typeof(PersonDTO))]
         [ProducesResponseType((int)HttpStatusCode.BadRequest, Type = typeof(IActionResult))]
+        [ProducesResponseType((int)HttpStatusCode.InternalServerError, Type = typeof(IActionResult))]
         public async Task<IActionResult> Create([FromBody] PersonDTO request)
         {
             var person = _mapper.Map<Person>(request);
-            var createCustomer = new CreateCustomer(person);
+            var createCustomer = new CreatePersonCommand(person);
             var customer = await _mediator.Send(createCustomer);
 
             return Ok(customer);

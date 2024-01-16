@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Exclaimer.Service.Customer.Application.Commands
 {
-    public sealed record CreateCustomer(Person Person) : IRequest<Person>
+    public sealed record CreatePersonCommand(Person Person) : IRequest<Person>
     {
         public string? FirstName { get; set; }
 
