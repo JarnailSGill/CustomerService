@@ -3,6 +3,7 @@ using Exclaimer.Service.Customer.Application.DTOs;
 using Exclaimer.Service.Customer.Domain.Entities;
 using FluentValidation;
 using FluentValidation.TestHelper;
+using Xunit;
 
 namespace Exclaimer.Service.Customer.UnitTests
 {
@@ -23,6 +24,71 @@ namespace Exclaimer.Service.Customer.UnitTests
             var validationResult =  _validator.Validate(createValidPerson);
 
             Assert.True(validationResult.IsValid);
+        }
+
+        [Theory]
+        [InlineData("", "First Name is required.")]
+        [InlineData("TestingAVeryVeryVeryVeryVeryVeryVeryVeryLongFirstName", "First Name cannot exceed 50 characters.")]
+        public void InValidFirstName_Should_Return_IsValid_False_And_Error(string property, string errorMessage)
+        {
+            var createValidPerson = CreateValidPersonRequest();
+            createValidPerson.Person.FirstName = property;
+
+            var validationResult = _validator.Validate(createValidPerson);
+
+            Assert.False(validationResult.IsValid);
+            Assert.Equal(validationResult.Errors?.SingleOrDefault()?.ErrorMessage, errorMessage);
+        }
+
+        [Theory]
+        [InlineData("", "Email is required.")]
+        [InlineData("invalid-email", "Invalid email format.")]
+        [InlineData("a@b.com", null)]
+        public void InValidEmail_Should_Return_IsValid_False_And_Error(string property, string errorMessage)
+        {
+            var createValidPerson = CreateValidPersonRequest();
+            createValidPerson.Person.Email = property;
+
+            var validationResult = _validator.Validate(createValidPerson);
+
+            if (string.IsNullOrEmpty(errorMessage))
+            {
+                Assert.True(validationResult.IsValid);
+            }
+            else
+            {
+                Assert.False(validationResult.IsValid);
+                Assert.Equal(validationResult.Errors[0].ErrorMessage, errorMessage);
+            }
+        }
+
+        [Theory]
+        [InlineData("", "Phone Number is required.")]
+        [InlineData("123456789012345678901", "Phone Number cannot exceed 20 characters.")]
+        public void InValidPhoneNumber_Should_Return_IsValid_False_And_Error(string property, string errorMessage)
+        {
+            var createValidPerson = CreateValidPersonRequest();
+            createValidPerson.Person.PhoneNumber = property;
+
+            var validationResult = _validator.Validate(createValidPerson);
+
+            Assert.False(validationResult.IsValid);
+            Assert.Equal(validationResult.Errors?.SingleOrDefault()?.ErrorMessage, errorMessage);
+        }
+
+        [Theory]
+        [InlineData(null, "Date of Birth is required.")]
+        [InlineData("2023-12-15", "Invalid Date of Birth.")]
+        [InlineData("1922-01-15", "Invalid Date of Birth.")]
+        public void InValidDateOfBirth_Should_Return_IsValid_False_And_Error(string dateOfBirth, string errorMessage)
+        {
+            var createValidPerson = CreateValidPersonRequest();
+            createValidPerson.Person.DateOfBirth = dateOfBirth != null ? DateTime.Parse(dateOfBirth) : null;
+
+            var validationResult = _validator.Validate(createValidPerson);
+
+            Assert.False(validationResult.IsValid);
+            Assert.Equal(validationResult.Errors[0].ErrorMessage, errorMessage);
         }
 
         public static CreatePersonCommand CreateValidPersonRequest()
