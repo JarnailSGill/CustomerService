@@ -7,7 +7,10 @@ services:
       context: .
       dockerfile: Exclaimer/Dockerfile
     environment:
+      - ASPNETCORE_URLS=http://+:80;
       - ConnectionStrings__Default=Data Source=exclaimer.service.customer.db,1433;Initial Catalog=exclaimer.service.customer.db;MultipleActiveResultSets=True;User Id=sa;Password=Admin@123;TrustServerCertificate=True;
+    ports:
+      - "8080:80"
   exclaimer.service.customer.db:
     container_name: exclaimer.service.customer.db
     hostname: exclaimer.service.customer.db

@@ -6,6 +6,13 @@
       "serviceActions": {
         "exclaimer.service.customer.web": "StartDebugging"
       }
+    },
+    "Docker Compose Without Debugging": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "exclaimer.service.customer.web": "StartWithoutDebugging"
+      }
     }
   }
 }
