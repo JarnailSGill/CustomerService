@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Exclaimer.Service.Customer.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,15 +9,15 @@ namespace Exclaimer.Service.Customer.Application.Abstract
 {
     public interface ICustomerRepository
     {
-        Task<ICollection<Domain.Entities.Customer>> GetAll();
+        Task<ICollection<Person>> GetAll();
 
-        Task<Domain.Entities.Customer> AddCustomer(Domain.Entities.Customer toCreate);
+        Task<Person> AddCustomer(Person toCreate);
 
         Task DeleteCustomer(int customerId);
 
-        //Task<Domain.Entities.Customer> UpdateCustomer(int customerId, string name, string email);
+        Task<Person> UpdateCustomer(int customerId, string name, string email);
 
-        Task<Domain.Entities.Customer> GetCustomerById(int customerId);
+        Task<Person> GetCustomerById(int customerId);
 
     }
 }

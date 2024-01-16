@@ -1,4 +1,5 @@
 ﻿using Exclaimer.Service.Customer.Application.Abstract;
+using Exclaimer.Service.Customer.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace Exclaimer.Service.Customer.Infrastructure.Repositories
             _context = context;
         }
 
-        public async Task<Domain.Entities.Customer> AddCustomer(Domain.Entities.Customer toCreate)
+        public async Task<Person> AddCustomer(Person toCreate)
         {
             _context.Customer.Add(toCreate);
 
@@ -37,25 +38,25 @@ namespace Exclaimer.Service.Customer.Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<ICollection<Domain.Entities.Customer>> GetAll()
+        public async Task<ICollection<Person>> GetAll()
         {
             return await _context.Customer.ToListAsync();
         }
 
-        public async Task<Domain.Entities.Customer> GetCustomerById(int customerId)
+        public async Task<Person> GetCustomerById(int customerId)
         {
             return await _context.Customer.SingleOrDefaultAsync(p => p.Id.Equals(customerId));
         }
 
-        //public async Task<Domain.Entities.Customer> UpdateCustomer(int customerId, string name, string email)
-        //{
-        //    var customer = await _context.Customer.SingleOrDefaultAsync(p => p.Id == customerId);
-        //    customer.FirstName = name;
-        //    customer.Email = email;
+        public async Task<Person> UpdateCustomer(int customerId, string name, string email)
+        {
+            var customer = await _context.Customer.SingleOrDefaultAsync(p => p.Id == customerId);
+            customer.FirstName = name;
+            customer.Email = email;
 
-        //    await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
 
-        //    return customer;
-        //}
+            return customer;
+        }
     }
 }

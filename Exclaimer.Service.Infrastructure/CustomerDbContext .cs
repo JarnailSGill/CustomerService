@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Exclaimer.Service.Customer.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Exclaimer.Service.Customer.Infrastructure
 {
@@ -8,6 +9,6 @@ namespace Exclaimer.Service.Customer.Infrastructure
         {
         }
 
-        public DbSet<Domain.Entities.Customer> Customer { get; set; }
+        public DbSet<Person> Customer { get; set; }
     };
 }

@@ -1,5 +1,4 @@
-﻿using FluentValidation;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,8 +15,6 @@ namespace Exclaimer.Service.Customer.Application
 
             services.AddMediatR(configuration =>
                 configuration.RegisterServicesFromAssembly(assembly));
-
-            services.AddValidatorsFromAssembly(assembly);
 
             return services;
         }

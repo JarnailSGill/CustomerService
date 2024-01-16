@@ -1,7 +1,8 @@
-﻿using Exclaimer.Service.Customer.Application.Commands;
-using Exclaimer.Service.Customer.Web.DTOs;
+﻿using AutoMapper;
+using Exclaimer.Service.Customer.Application.Commands;
+using Exclaimer.Service.Customer.Application.DTOs;
+using Exclaimer.Service.Customer.Domain.Entities;
 using MediatR;
-using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -12,18 +13,21 @@ namespace Exclaimer.Service.Customer.Web.Controllers
     public class CustomerController : ControllerBase
     {
         private readonly IMediator _mediator;
+        private readonly IMapper _mapper;
 
-        public CustomerController(IMediator mediator)
+        public CustomerController(IMediator mediator, IMapper mapper)
         {
             _mediator = mediator;
+            _mapper = mapper;
         }
 
         [HttpPost]
-        [ProducesResponseType((int)HttpStatusCode.OK, Type = typeof(CustomerDTO))]
+        [ProducesResponseType((int)HttpStatusCode.OK, Type = typeof(PersonDTO))]
         [ProducesResponseType((int)HttpStatusCode.BadRequest, Type = typeof(IActionResult))]
-        public async Task<IActionResult> Create([FromBody] CustomerDTO request)
+        public async Task<IActionResult> Create([FromBody] PersonDTO request)
         {
-            var createCustomer = new CreateCustomerCommand { FirstName = request.FirstName };
+            var person = _mapper.Map<Person>(request);
+            var createCustomer = new CreateCustomer(person);
             var customer = await _mediator.Send(createCustomer);
 
             return Ok(customer);

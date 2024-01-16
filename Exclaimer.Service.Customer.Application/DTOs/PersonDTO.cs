@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Exclaimer.Service.Customer.Domain.Entities
+﻿namespace Exclaimer.Service.Customer.Application.DTOs
 {
-    public sealed class Customer
+    public class PersonDTO
     {
-        public int Id { get; set; }
-
         public string? FirstName { get; set; }
 
         public string? LastName { get; set; }
@@ -29,8 +21,5 @@ namespace Exclaimer.Service.Customer.Domain.Entities
         public string? Country { get; set; }
 
         public DateTime? DateOfBirth { get; set; }
-
-        public DateTime RegistrationDate { get; set; }
     }
-
 }

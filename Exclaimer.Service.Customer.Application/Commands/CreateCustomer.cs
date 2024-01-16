@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Exclaimer.Service.Customer.Domain.Entities;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Exclaimer.Service.Customer.Application.Commands
 {
-    public class CreateCustomerCommand: IRequest<Domain.Entities.Customer>
+    public sealed record CreateCustomer(Person Person) : IRequest<Person>
     {
         public string? FirstName { get; set; }
 

@@ -1,10 +1,11 @@
 using Exclaimer.Service.Customer.Application;
 using Exclaimer.Service.Customer.Application.Abstract;
-using Exclaimer.Service.Customer.Application.Commands;
+using Exclaimer.Service.Customer.Application.DTOs;
+using Exclaimer.Service.Customer.Application.Mapping;
+using Exclaimer.Service.Customer.Domain.Entities;
 using Exclaimer.Service.Customer.Infrastructure;
 using Exclaimer.Service.Customer.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,6 +24,8 @@ var cs = builder.Configuration.GetConnectionString("Default");
 builder.Services.AddDbContext<CustomerDbContext>(opt => opt.UseSqlServer(cs));
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+
+builder.Services.AddAutoMapper(typeof(PersonMappingProfile).GetTypeInfo().Assembly);
 
 var app = builder.Build();
 

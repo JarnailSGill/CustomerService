@@ -1,4 +1,5 @@
 ﻿using Exclaimer.Service.Customer.Application.Abstract;
+using Exclaimer.Service.Customer.Domain.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -8,18 +9,18 @@ using System.Threading.Tasks;
 
 namespace Exclaimer.Service.Customer.Application.Commands
 {
-    public class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerCommand, Domain.Entities.Customer>
+    public class CreateCustomerHandler : IRequestHandler<CreateCustomer, Person>
     {
         private readonly ICustomerRepository _customerRepository;
 
-        public CreateCustomerCommandHandler(ICustomerRepository customerRepository)
+        public CreateCustomerHandler(ICustomerRepository customerRepository)
         {
             _customerRepository = customerRepository;
         }
 
-        public async Task<Domain.Entities.Customer> Handle(CreateCustomerCommand request, CancellationToken cancellationToken)
+        public async Task<Person> Handle(CreateCustomer request, CancellationToken cancellationToken)
         {
-            var customer = new Domain.Entities.Customer
+            var customer = new Person
             {
                 FirstName  = request.FirstName,
                 LastName = request.LastName,
