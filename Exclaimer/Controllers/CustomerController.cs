@@ -2,9 +2,11 @@
 using Exclaimer.Service.Customer.Application.Commands;
 using Exclaimer.Service.Customer.Application.DTOs;
 using Exclaimer.Service.Customer.Domain.Entities;
+using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Exclaimer.Service.Customer.Web.Controllers
 {
@@ -27,11 +29,24 @@ namespace Exclaimer.Service.Customer.Web.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError, Type = typeof(IActionResult))]
         public async Task<IActionResult> Create([FromBody] PersonDTO request)
         {
-            var person = _mapper.Map<Person>(request);
-            var createCustomer = new CreatePersonCommand(person);
-            var customer = await _mediator.Send(createCustomer);
+            try
+            {
+                var person = _mapper.Map<Person>(request);
+                var createCustomer = new CreatePersonCommand(person);
+                var customer = await _mediator.Send(createCustomer);
+                return Ok(customer.Id);
+            }
+            catch (ValidationException ex)
+            {
+                // Handle validation errors
+                var errors = ex.Errors.Select(error => new
+                {
+                    Field = error.PropertyName,
+                    Message = error.ErrorMessage
+                }).ToList();
 
-            return Ok(customer);
+                return BadRequest(new { Errors = errors });
+            }
         }
 
     }

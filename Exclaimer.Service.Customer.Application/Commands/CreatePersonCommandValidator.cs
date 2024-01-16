@@ -11,10 +11,10 @@ namespace Exclaimer.Service.Customer.Application.Commands
     {
         public CreatePersonCommandValidator()
         {
-            RuleFor(command => command.FirstName)
+            RuleFor(command => command.Person.FirstName)
                 .NotEmpty().WithMessage("FirstName is required.");
 
-            RuleFor(command => command.DateOfBirth)
+            RuleFor(command => command.Person.DateOfBirth)
                 .NotEmpty().WithMessage("Date of birth is required.")
                 .Must(BeAValidDate).WithMessage("Invalid date of birth.");
         }

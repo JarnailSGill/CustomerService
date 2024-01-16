@@ -32,15 +32,15 @@ namespace Exclaimer.Service.Customer.Application.Commands
 
             var person = new Person
             {
-                FirstName = request.FirstName,
-                LastName = request.LastName,
-                Address = request.Address,
-                City = request.City,
-                Country = request.Country,
-                DateOfBirth = request.DateOfBirth,
-                Email = request.Email,
-                PhoneNumber = request.PhoneNumber,
-                PostalCode = request.PostalCode,
+                FirstName = request.Person.FirstName,
+                LastName = request.Person.LastName,
+                Address = request.Person.Address,
+                City = request.Person.City,
+                Country = request.Person.Country,
+                DateOfBirth = request.Person.DateOfBirth,
+                Email = request.Person.Email,
+                PhoneNumber = request.Person.PhoneNumber,
+                PostalCode = request.Person.PostalCode,
             };
 
             return await _customerRepository.AddCustomer(person);
