@@ -1,4 +1,5 @@
 using Exclaimer.Service.Customer.AcceptanceTests.Fixtures;
+using Exclaimer.Service.Customer.AcceptanceTests.Helpers;
 using Exclaimer.Service.Customer.AcceptanceTests.Response;
 using Exclaimer.Service.Customer.Application.DTOs;
 using Newtonsoft.Json;
@@ -20,7 +21,7 @@ namespace Exclaimer.Service.Customer.AcceptanceTests
         [Fact]
         public async Task ValidPersonRequest_Should_Return_Ok_With_ID()
         {
-            var person = CreateValidPersonRequest();
+            var person = PersonHelper.CreateValidPersonRequest();
             var request = new RestRequest("api/Customer", Method.Post).AddJsonBody(person);
             var response = await _httpClientFixture.Client.ExecuteAsync(request);
 
@@ -31,7 +32,7 @@ namespace Exclaimer.Service.Customer.AcceptanceTests
         [Fact]
         public async Task InvalidEmail_Should_Return_BadRequest()
         {
-            var person = CreateValidPersonRequest();
+            var person = PersonHelper.CreateValidPersonRequest();
 
             // Set an invalid email address
             person.Email = "invalid-email";
@@ -54,22 +55,6 @@ namespace Exclaimer.Service.Customer.AcceptanceTests
 
             Assert.Equal(HttpStatusCode.UnsupportedMediaType, response.StatusCode);
             Assert.NotNull(response.Content);
-        }
-
-        public static PersonDTO CreateValidPersonRequest()
-        {
-            return new PersonDTO
-            {
-                FirstName = "John",
-                LastName = "Smith",
-                Email = "John.Smith@outlook.co.uk",
-                PhoneNumber = "07450742011",
-                Address = "24 High Street",
-                City = "Birmingham",
-                PostalCode = "B68 8LA",
-                Country = "West Midlands",
-                DateOfBirth = DateTime.UtcNow.AddYears(-30)
-            };
         }
     }
 }

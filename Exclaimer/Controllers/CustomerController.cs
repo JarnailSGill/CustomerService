@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using Exclaimer.Service.Customer.Application.Commands;
 using Exclaimer.Service.Customer.Application.DTOs;
+using Exclaimer.Service.Customer.Application.Queries;
 using Exclaimer.Service.Customer.Domain.Entities;
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Net;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
@@ -46,6 +48,26 @@ namespace Exclaimer.Service.Customer.Web.Controllers
 
                 return BadRequest(new { Errors = errors });
             }
+        }
+
+        [HttpGet]
+        [ProducesResponseType(typeof(PersonResponseDTO), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest, Type = typeof(IActionResult))]
+        [ProducesResponseType((int)HttpStatusCode.NotFound, Type = typeof(IActionResult))]
+        public async Task<IActionResult> Get(int id)
+        {
+            if (id <= 0)
+                return BadRequest("Invalid voucher ID.");
+
+            var getCustomer = new GetCustomerByIdQuery { Id = id };
+            var customer = await _mediator.Send(getCustomer);
+
+            if (customer == null)
+            {
+                return NotFound($"Customer with Id {id} not found" );
+            }
+
+            return Ok(customer);
         }
 
     }
