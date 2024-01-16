@@ -38,7 +38,6 @@ namespace Exclaimer.Service.Customer.Web.Controllers
             }
             catch (ValidationException ex)
             {
-                // Handle validation errors
                 var errors = ex.Errors.Select(error => new
                 {
                     Field = error.PropertyName,

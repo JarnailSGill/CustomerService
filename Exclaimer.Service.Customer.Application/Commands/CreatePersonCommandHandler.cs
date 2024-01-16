@@ -41,6 +41,7 @@ namespace Exclaimer.Service.Customer.Application.Commands
                 Email = request.Person.Email,
                 PhoneNumber = request.Person.PhoneNumber,
                 PostalCode = request.Person.PostalCode,
+                RegistrationDate = DateTime.Now
             };
 
             return await _customerRepository.AddCustomer(person);

@@ -3,17 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34408.163
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exclaimer.Service.Customer.Web", "Exclaimer\Exclaimer.Service.Customer.Web.csproj", "{129FFDD7-CFFB-4F13-AF39-0FF40A5C3FA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exclaimer.Service.Customer.Web", "Exclaimer\Exclaimer.Service.Customer.Web.csproj", "{129FFDD7-CFFB-4F13-AF39-0FF40A5C3FA4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B5085D9D-89DD-486D-AF08-F9342116C475}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{818B4D11-A040-4C7B-93D9-8C093D8BE78A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exclaimer.Service.Customer.Infrastructure", "Exclaimer.Service.Infrastructure\Exclaimer.Service.Customer.Infrastructure.csproj", "{622A93CA-6E73-42C3-8BBB-06E288C7E53C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exclaimer.Service.Customer.Infrastructure", "Exclaimer.Service.Infrastructure\Exclaimer.Service.Customer.Infrastructure.csproj", "{622A93CA-6E73-42C3-8BBB-06E288C7E53C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exclaimer.Service.Customer.Domain", "Exclaimer.Service.Customer.Domain\Exclaimer.Service.Customer.Domain.csproj", "{16FF2494-1BD4-46C0-8247-2862B8FF7CF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exclaimer.Service.Customer.Domain", "Exclaimer.Service.Customer.Domain\Exclaimer.Service.Customer.Domain.csproj", "{16FF2494-1BD4-46C0-8247-2862B8FF7CF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exclaimer.Service.Customer.Application", "Exclaimer.Service.Customer.Application\Exclaimer.Service.Customer.Application.csproj", "{18E38BF3-9586-4896-A69E-A723DF2469A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exclaimer.Service.Customer.Application", "Exclaimer.Service.Customer.Application\Exclaimer.Service.Customer.Application.csproj", "{18E38BF3-9586-4896-A69E-A723DF2469A9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{7F902A49-08FD-4071-9462-E2DF11265183}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exclaimer.Service.Customer.UnitTests", "..\Exclaimer.Service.Customer.UnitTests\Exclaimer.Service.Customer.UnitTests.csproj", "{8B777320-682E-44E9-BC97-CF0B56B56A7B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +45,10 @@ Global
 		{18E38BF3-9586-4896-A69E-A723DF2469A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18E38BF3-9586-4896-A69E-A723DF2469A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18E38BF3-9586-4896-A69E-A723DF2469A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B777320-682E-44E9-BC97-CF0B56B56A7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B777320-682E-44E9-BC97-CF0B56B56A7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B777320-682E-44E9-BC97-CF0B56B56A7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B777320-682E-44E9-BC97-CF0B56B56A7B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +58,7 @@ Global
 		{622A93CA-6E73-42C3-8BBB-06E288C7E53C} = {B5085D9D-89DD-486D-AF08-F9342116C475}
 		{16FF2494-1BD4-46C0-8247-2862B8FF7CF3} = {B5085D9D-89DD-486D-AF08-F9342116C475}
 		{18E38BF3-9586-4896-A69E-A723DF2469A9} = {B5085D9D-89DD-486D-AF08-F9342116C475}
+		{8B777320-682E-44E9-BC97-CF0B56B56A7B} = {7F902A49-08FD-4071-9462-E2DF11265183}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6C5E0711-0003-4E95-A5F7-EDC8CB6990DE}
