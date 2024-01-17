@@ -10,21 +10,23 @@ using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+//Project dependencies
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure();
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 
+//Config
 var cs = builder.Configuration.GetConnectionString("Default");
 builder.Services.AddDbContext<CustomerDbContext>(opt => opt.UseSqlServer(cs));
 
+//MediatR
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
+//AutoMapper
 builder.Services.AddAutoMapper(typeof(PersonMappingProfile).GetTypeInfo().Assembly);
 
 var app = builder.Build();
